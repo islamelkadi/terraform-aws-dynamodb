@@ -68,20 +68,6 @@ Security controls are automatically applied based on the environment through the
 
 For full details on security profiles and how controls vary by environment, see the [Security Profiles](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) documentation.
 
-### Security Best Practices
-
-**Production Tables:**
-- Use KMS customer-managed keys for encryption
-- Enable point-in-time recovery (PITR) for data protection
-- Enable deletion protection to prevent accidental deletion
-- Use on-demand billing or provisioned with auto-scaling
-- Enable DynamoDB Streams for change data capture
-- Set up CloudWatch alarms for throttling and errors
-
-**Development Tables:**
-- KMS encryption still recommended (minimal cost)
-- PITR optional for cost savings
-- Deletion protection can be disabled with justification
 ## Features
 
 - DynamoDB table with on-demand billing mode
