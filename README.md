@@ -5,15 +5,13 @@ A reusable Terraform module for creating AWS DynamoDB tables with AWS Security H
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Security Controls](#security-controls)
+- [Security](#security)
 - [Features](#features)
-- [Usage Examples](#usage-examples)
+- [Usage](#usage)
 - [Requirements](#requirements)
-- [Inputs](#inputs)
-- [Outputs](#outputs)
-- [Examples](#examples)
+- [MCP Servers](#mcp-servers)
+- [License](#license)
 
----
 
 ## Prerequisites
 
@@ -30,7 +28,11 @@ make bootstrap
 
 This will install/upgrade: tfenv, Terraform (via tfenv), tflint, terraform-docs, checkov, and pre-commit.
 
-## Security Controls
+
+
+## Security
+
+### Security Controls
 
 This module implements AWS Security Hub compliance with an extensible override system. Security controls are enforced by default when `security_controls` is provided from the metadata module.
 
@@ -57,6 +59,33 @@ This module implements AWS Security Hub compliance with an extensible override s
 - PITR optional for cost savings
 - Deletion protection can be disabled with justification
 
+### Environment-Based Security Controls
+
+Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
+
+| Control | Dev | Staging | Prod |
+|---------|-----|---------|------|
+| KMS customer-managed keys | Optional | Required | Required |
+| Point-in-time recovery | Optional | Required | Required |
+| Deletion protection | Disabled | Enabled | Enabled |
+| DynamoDB Streams | Optional | Recommended | Recommended |
+
+For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
+
+### Security Best Practices
+
+**Production Tables:**
+- Use KMS customer-managed keys for encryption
+- Enable point-in-time recovery (PITR) for data protection
+- Enable deletion protection to prevent accidental deletion
+- Use on-demand billing or provisioned with auto-scaling
+- Enable DynamoDB Streams for change data capture
+- Set up CloudWatch alarms for throttling and errors
+
+**Development Tables:**
+- KMS encryption still recommended (minimal cost)
+- PITR optional for cost savings
+- Deletion protection can be disabled with justification
 ## Features
 
 - DynamoDB table with on-demand billing mode
@@ -288,18 +317,6 @@ resource "aws_lambda_event_source_mapping" "dynamodb_stream" {
 }
 ```
 
-## Environment-Based Security Controls
-
-Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
-
-| Control | Dev | Staging | Prod |
-|---------|-----|---------|------|
-| KMS customer-managed keys | Optional | Required | Required |
-| Point-in-time recovery | Optional | Required | Required |
-| Deletion protection | Disabled | Enabled | Enabled |
-| DynamoDB Streams | Optional | Recommended | Recommended |
-
-For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
 
 ## MCP Servers
 
@@ -422,9 +439,6 @@ module "dynamodb_table" {
 | <a name="output_table_name"></a> [table\_name](#output\_table\_name) | DynamoDB table name |
 | <a name="output_tags"></a> [tags](#output\_tags) | Tags applied to the DynamoDB table |
 
-## Example
-
-See [example/](example/) for a complete working example with all features.
 
 ## License
 
