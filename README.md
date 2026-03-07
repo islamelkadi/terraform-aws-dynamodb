@@ -100,8 +100,7 @@ For full details on security profiles and how controls vary by environment, see 
 
 ```hcl
 module "dynamodb_table" {
-  source = "github.com/islamelkadi/terraform-aws-dynamodb?ref=v1.0.0"
-  
+  source = "github.com/islamelkadi/terraform-aws-dynamodb"
   namespace   = "example"
   environment = "prod"
   name        = "events"
@@ -135,9 +134,7 @@ module "dynamodb_table" {
 
 ```hcl
 module "dynamodb_table" {
-  source = "github.com/islamelkadi/terraform-aws-dynamodb?ref=v1.0.0"
-  
-  # Pass security controls from metadata module
+  source = "github.com/islamelkadi/terraform-aws-dynamodb"
   security_controls = module.metadata.security_controls
   
   namespace   = "example"
@@ -203,8 +200,7 @@ module "dynamodb_table" {
 
 ```hcl
 module "dynamodb_table" {
-  source = "github.com/islamelkadi/terraform-aws-dynamodb?ref=v1.0.0"
-  
+  source = "github.com/islamelkadi/terraform-aws-dynamodb"
   security_controls = module.metadata.security_controls
   
   # Override security controls for development
@@ -246,8 +242,7 @@ module "dynamodb_table" {
 
 ```hcl
 module "events_table" {
-  source = "github.com/islamelkadi/terraform-aws-dynamodb?ref=v1.0.0"
-  
+  source = "github.com/islamelkadi/terraform-aws-dynamodb"
   security_controls = module.metadata.security_controls
   
   namespace   = "example"
@@ -285,8 +280,7 @@ module "events_table" {
 
 # Lambda to process DynamoDB stream
 module "stream_processor" {
-  source = "github.com/islamelkadi/terraform-aws-lambda?ref=v1.0.0"
-  
+  source = "github.com/islamelkadi/terraform-aws-dynamodb"
   namespace   = "example"
   environment = "prod"
   name        = "events-stream-processor"
@@ -333,8 +327,7 @@ Both servers run via `uvx` and require no additional installation beyond the [bo
 # Demonstrates table creation with GSI, TTL, and streams
 
 module "dynamodb_table" {
-  source = "../"
-
+  source = "github.com/islamelkadi/terraform-aws-dynamodb"
   namespace   = var.namespace
   environment = var.environment
   name        = var.name
