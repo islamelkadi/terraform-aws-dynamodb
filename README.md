@@ -10,7 +10,6 @@ A reusable Terraform module for creating AWS DynamoDB tables with AWS Security H
 - [Usage](#usage)
 - [Requirements](#requirements)
 - [MCP Servers](#mcp-servers)
-- [License](#license)
 
 
 ## Prerequisites
@@ -439,11 +438,6 @@ module "dynamodb_table" {
 | <a name="output_table_name"></a> [table\_name](#output\_table\_name) | DynamoDB table name |
 | <a name="output_tags"></a> [tags](#output\_tags) | Tags applied to the DynamoDB table |
 
-
-## License
-
-MIT Licensed. See [LICENSE](LICENSE) for full details.
-<!-- END_TF_DOCS -->
 
 ## Examples
 
