@@ -416,3 +416,4 @@ module "dynamodb_table" {
 
 See [example/](example/) for a complete working example with GSI, TTL, and streams.
 
+<!-- END_TF_DOCS -->
