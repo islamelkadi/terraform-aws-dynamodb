@@ -1,3 +1,7 @@
+# Primary Module Example - This demonstrates the terraform-aws-dynamodb module
+# Supporting infrastructure (KMS) is defined in separate files
+# to keep this example focused on the module's core functionality.
+#
 # DynamoDB Module Example
 # Demonstrates table creation with GSI, TTL, and streams
 
@@ -31,8 +35,8 @@ module "dynamodb_table" {
   enable_point_in_time_recovery = var.enable_point_in_time_recovery
   deletion_protection_enabled   = var.deletion_protection_enabled
 
-  # Encryption
-  kms_key_arn = var.kms_key_arn
+  # Direct reference to kms.tf module output
+  kms_key_arn = module.kms_key.key_arn
 
   tags = var.tags
 }
