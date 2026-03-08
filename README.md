@@ -1,5 +1,9 @@
 # Terraform AWS DynamoDB Module
 
+[![Terraform Security](https://github.com/islamelkadi/terraform-aws-dynamodb/actions/workflows/terraform-security.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-dynamodb/actions/workflows/terraform-security.yaml)
+[![Terraform Lint & Validation](https://github.com/islamelkadi/terraform-aws-dynamodb/actions/workflows/terraform-lint.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-dynamodb/actions/workflows/terraform-lint.yaml)
+[![Terraform Docs](https://github.com/islamelkadi/terraform-aws-dynamodb/actions/workflows/terraform-docs.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-dynamodb/actions/workflows/terraform-docs.yaml)
+
 A reusable Terraform module for creating AWS DynamoDB tables with AWS Security Hub compliance (FSBP, CIS, NIST 800-53, NIST 800-171, PCI DSS), flexible security control overrides, and comprehensive configuration options.
 
 ## Table of Contents
