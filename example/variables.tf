@@ -87,11 +87,6 @@ variable "deletion_protection_enabled" {
   default     = false
 }
 
-variable "kms_key_arn" {
-  description = "ARN of KMS key for encryption"
-  type        = string
-}
-
 variable "tags" {
   description = "Additional tags"
   type        = map(string)
